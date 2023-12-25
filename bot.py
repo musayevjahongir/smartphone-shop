@@ -12,9 +12,10 @@ def main():
 
     dp.add_handler(CommandHandler('start', handlers.start))
     dp.add_handler(MessageHandler(Filters.text('Shop'), handlers.shop))
+    dp.add_handler(MessageHandler(Filters.text('cart'), handlers.cart))
     dp.add_handler(CallbackQueryHandler(handlers.send_phones, pattern='brend:'))
     dp.add_handler(CallbackQueryHandler(handlers.send_phone, pattern='phone:'))
-    dp.add_handler(CallbackQueryHandler(handlers.close_phone, pattern='close-phone'))
+    dp.add_handler(CallbackQueryHandler(handlers.close_phone, pattern='close'))
     dp.add_handler(CallbackQueryHandler(handlers.add_cart, pattern='add:'))
 
     updater.start_polling()
