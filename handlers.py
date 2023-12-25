@@ -36,8 +36,11 @@ def send_phone(update: Update, context: CallbackContext):
             [
                 [
                     InlineKeyboardButton('add cart', callback_data=f"add:{brend}:{doc_id}"),
-                    InlineKeyboardButton('close', callback_data=f"close"),
+                    InlineKeyboardButton('close', callback_data=f"close-phone"),
                 ]
             ]
         )
     )
+
+def close_phone(update: Update, context: CallbackContext):
+    update.callback_query.message.delete()
