@@ -1,7 +1,7 @@
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext
 import keyboards
-from db import get_phone_by_id
+from db import get_phone_by_id, add_item
 
 
 def start(update: Update, context: CallbackContext):
@@ -44,3 +44,11 @@ def send_phone(update: Update, context: CallbackContext):
 
 def close_phone(update: Update, context: CallbackContext):
     update.callback_query.message.delete()
+
+def add_cart(update: Update, context: CallbackContext):
+    user = update.effective_user
+    brend, doc_id = update.callback_query.data.split(':')[1:]
+
+    add_item(user.id, brend, doc_id)
+
+    update.callback_query.answer(text='added item.', show_alert=True)
