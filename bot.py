@@ -1,4 +1,4 @@
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
 from config import get_token
 import handlers
 
@@ -12,6 +12,7 @@ def main():
 
     dp.add_handler(CommandHandler('start', handlers.start))
     dp.add_handler(MessageHandler(Filters.text('Shop'), handlers.shop))
+    dp.add_handler(CallbackQueryHandler(handlers.send_phones, pattern='brend:'))
 
     updater.start_polling()
     updater.idle()

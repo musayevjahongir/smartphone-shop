@@ -14,3 +14,11 @@ def shop(update: Update, context: CallbackContext):
         text='start shopping',
         reply_markup=keyboards.brends_keyboard()
     )
+
+def send_phones(update: Update, context: CallbackContext):
+    brend = update.callback_query.data.split(':')[1]
+
+    update.callback_query.message.reply_text(
+        text='start shopping',
+        reply_markup=keyboards.phones_keyboard(brend)
+    )
