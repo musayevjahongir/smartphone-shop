@@ -18,6 +18,8 @@ def main():
     dp.add_handler(CallbackQueryHandler(handlers.close_phone, pattern='close'))
     dp.add_handler(CallbackQueryHandler(handlers.add_cart, pattern='add:'))
     dp.add_handler(CallbackQueryHandler(handlers.clear_basket, pattern='clear-basket'))
+    dp.add_handler(MessageHandler(Filters.text('contact'), handlers.send_contact))
+    dp.add_handler(MessageHandler(Filters.text('about'), handlers.about))
 
     updater.start_polling()
     updater.idle()

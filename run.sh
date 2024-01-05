@@ -1,1 +1,2 @@
-python3 bot.py
+source venv/Scripts/activate
+python bot.py

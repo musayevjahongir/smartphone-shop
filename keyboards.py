@@ -8,19 +8,22 @@ def home_keyboard():
         [
             [KeyboardButton('Shop'), KeyboardButton('cart')],
             [KeyboardButton('about'), KeyboardButton('contact')],
-        ]
+        ],
+        resize_keyboard=True
     )
 
 def phones_keyboard(brend: str):
     phones = get_phones_by_brend(brend)
 
     keyboard = []
+    i=1
     for phone in phones:
         keyboard.append(
             [
-                InlineKeyboardButton(text=phone['name'], callback_data=f"phone:{brend}:{phone.doc_id}")
+                InlineKeyboardButton(text=phone['name'], callback_data=f"phone:{brend}:{i}")
             ]
         )
+        i+=1
 
     return InlineKeyboardMarkup(keyboard)
 

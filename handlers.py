@@ -27,7 +27,7 @@ def cart(update: Update, context: CallbackContext):
         phone = get_phone_by_id(item['brend'], item['phone_id'])
         total += phone['price']
 
-        text += f"#{phone.doc_id} {phone['name']} - {phone['price']}\n"
+        text += f"# {phone['name']} - {phone['price']}\n"
 
     text += f"\ntotal: {total}"
 
@@ -91,3 +91,18 @@ def clear_basket(update: Update, context: CallbackContext):
 
     update.callback_query.answer(text='removed items.', show_alert=True)
     close_phone(update, context)
+
+def send_contact(update: Update, context: CallbackContext):
+    user = update.effective_user
+    bot = context.bot
+    text= "Tanlagan maxsulotlaringizni rasmiylashtirish uchun adminimiz bilan bog'laning!"
+
+    bot.sendMessage(user.id, text)
+    bot.sendContact(chat_id=user.id, phone_number='+998990235051', first_name='Jahongir')
+
+def about(update: Update, context: CallbackContext):
+    user = update.effective_user
+    bot = context.bot
+    text= "Biz orqali turli brenddagi mobile telefonlarni sotib olishingiz mumkin. Bizni tanlaganingiz uchun raxmat!!!"
+
+    bot.sendMessage(user.id, text)
